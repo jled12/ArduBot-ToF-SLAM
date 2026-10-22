@@ -126,25 +126,25 @@ Old occupied positions are not accumulated by the clearing layer. Current obstac
 
 ## Development screenshots
 
-These captures come from the original development setup in October 2026. They illustrate the robot project, not a fresh end-to-end validation of this compact repository. In particular, the screenshots use the development RViz layout and OctoMap display; the included lightweight RViz configuration is different.
+These captures come from the original development setup. They illustrate the robot project, not a fresh end-to-end validation of this compact repository. In particular, the screenshots use the development RViz layout and OctoMap display; the included lightweight RViz configuration is different.
 
 ### 3D occupancy model and estimated trajectory
 
 ![OctoMap occupancy voxels and a green trajectory displayed in RViz](docs/images/rviz-octomap-overview.png)
 
-*19 October 2026 — a 3D occupancy model, the robot model and an estimated trajectory shown together in RViz. The trajectory is an estimate, not external ground truth.*
+*A 3D occupancy model and an estimated trajectory shown together in RViz. The trajectory is an estimate, not external ground truth.*
 
 ### Height-selected projection and obstacle structure
 
 ![Close-up of 3D obstacle voxels above a projected occupancy grid in RViz](docs/images/rviz-projected-occupancy.png)
 
-*11 October 2026 — a close-up of the voxel model over a projected occupancy grid. The development display shows a 0.025 m grid resolution.*
+*A close-up of the voxel model over a projected occupancy grid. The development display shows a 0.025 m grid resolution.*
 
 ### 2D occupancy map and live scan
 
 ![2D occupancy map, robot model, trajectory and live scan in RViz](docs/images/rviz-2d-map.png)
 
-*11 October 2026 — the `/map` occupancy grid, a scan and the robot's trajectory in the development interface. This is a separate 2D map view, not the 3D projection above.*
+*A 2D occupancy grid, a scan and the robot's trajectory in the development interface. This is a separate 2D map view, not the 3D projection above.*
 
 ## ROS interfaces
 
@@ -256,3 +256,4 @@ Before the public release, the next engineering steps are to verify the exact bo
 Created by **jled12 / 3DJLed**. [Project videos and channel](https://www.youtube.com/@3DJLed).
 
 The repository includes the **GPL-3.0** license selected for the project. Existing per-package license declarations and third-party notices are preserved; external SDKs and libraries remain under their own terms. See [LICENSE](LICENSE), [third-party notes](THIRD_PARTY.md) and the Arduino dependency notes for details.
+
