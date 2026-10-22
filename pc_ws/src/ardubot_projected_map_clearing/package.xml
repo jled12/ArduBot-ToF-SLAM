@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ardubot_projected_map_clearing</name>
+  <version>0.3.0</version>
+  <description>Sidecar persistent 2D map: OctoMap projected obstacles with pose-based FOV free-space.</description>
+  <maintainer email="maintainer@example.invalid">ArduBot</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

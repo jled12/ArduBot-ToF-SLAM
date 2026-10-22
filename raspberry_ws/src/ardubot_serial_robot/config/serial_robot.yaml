@@ -1,0 +1,21 @@
+serial_robot:
+  ros__parameters:
+    port: /dev/ttyS0
+    baud: 115200
+    wheel_diameter: 0.03
+    wheel_base: 0.0784
+    ticks_per_wheel_rev: 348.0
+    odom_frame: odom
+    base_frame: base_link
+    imu_frame: imu_link
+    publish_tf: true
+    read_rate: 100.0
+    cmd_rate: 20.0
+    tf_rate: 20.0
+    cmd_timeout: 0.5
+    max_wheel_speed: 0.5
+    odom_xy_covariance: 0.02
+    odom_yaw_covariance: 0.05
+    imu_orientation_covariance: 0.05
+    imu_angular_velocity_covariance: 0.02
+    imu_linear_acceleration_covariance: 0.2

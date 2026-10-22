@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<robot name="ardubot">
+
+  <!--
+    Convention ROS utilisée :
+      X vers l'avant, Y vers la gauche, Z vers le haut.
+
+    Les STL proviennent d'un assemblage CAO et contiennent donc des coordonnées
+    globales. base_link est recentré sur le milieu transversal des deux axes. Pour les roues, le mesh est recentré sur son axe dans le repère du
+    link, puis le joint est placé au centre réel de la roue dans base_link.
+    Ainsi, une mise à jour de /joint_states fait tourner la roue sur elle-même
+    au lieu de la translater autour de base_link.
+  -->
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.5"/>
+      <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.03"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.04 -0.22666852 -0.01" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/chassis.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="chassis_gray">
+        <color rgba="0.7 0.7 0.72 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.04 -0.22666852 -0.01" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/chassis.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.2"/>
+      <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0002" iyz="0.0" izz="0.0002"/>
+    </inertial>
+    <visual>
+      <!-- Recentrage du STL sur le centre de l'axe de la roue gauche. -->
+      <origin xyz="-0.01987150 -0.26588535 -0.01954433" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/left_wheel.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="wheel_black">
+        <color rgba="0.15 0.15 0.15 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.01987150 -0.26588535 -0.01954433" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/left_wheel.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <!-- Correction physique supplémentaire : +20,1285 mm en X et -9,54433 mm en Z. -->
+    <origin xyz="0.02012850 0.03921684 -0.00954433" rpy="0 0 0"/>
+    <!-- L'axe X du STL devient l'axe +Y dans la convention ROS. -->
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="right_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.2"/>
+      <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0002" iyz="0.0" izz="0.0002"/>
+    </inertial>
+    <visual>
+      <!-- Recentrage du STL sur le centre de l'axe de la roue droite. -->
+      <origin xyz="-0.01987150 -0.18745168 -0.01954433" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/right_wheel.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="wheel_black">
+        <color rgba="0.15 0.15 0.15 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.01987150 -0.18745168 -0.01954433" rpy="1.57079632679 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://ardubot_description/meshes/right_wheel.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <!-- Correction physique supplémentaire : +20,1285 mm en X et -9,54433 mm en Z. -->
+    <origin xyz="0.02012850 -0.03921684 -0.00954433" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="tof_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.02 0.02"/>
+      </geometry>
+      <material name="tof_blue">
+        <color rgba="0.1 0.3 0.9 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="tof_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="tof_link"/>
+    <origin xyz="0.085 0.0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="tof_optical_frame"/>
+
+  <joint name="tof_optical_joint" type="fixed">
+    <parent link="tof_link"/>
+    <child link="tof_optical_frame"/>
+    <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679"/>
+  </joint>
+
+  <!-- Le firmware transforme déjà les données du BNO055 dans les axes du robot. -->
+  <link name="imu_link"/>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="sensor_frame"/>
+  <joint name="sensor_frame_joint" type="fixed">
+    <parent link="tof_optical_frame"/><child link="sensor_frame"/>
+    <origin xyz="0 0 0" rpy="3.141592653589793 0 0"/>
+  </joint>
+  <link name="laser_frame"/>
+  <joint name="laser_frame_joint" type="fixed">
+    <parent link="base_link"/><child link="laser_frame"/>
+    <origin xyz="0.060 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>

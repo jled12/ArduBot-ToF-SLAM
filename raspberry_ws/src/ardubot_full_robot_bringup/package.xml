@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="3"><name>ardubot_full_robot_bringup</name><version>1.0.0</version>
+<description>Minimal ArduBot runtime bringup.</description><maintainer email="maintainer@example.invalid">jled12</maintainer>
+<license>GPL-3.0-only</license><buildtool_depend>ament_python</buildtool_depend>
+<exec_depend>launch</exec_depend>
+<exec_depend>launch_ros</exec_depend>
+<exec_depend>ament_index_python</exec_depend>
+<exec_depend>arducam</exec_depend>
+<exec_depend>ardubot_serial_robot</exec_depend>
+<exec_depend>domain_bridge</exec_depend>
+<export><build_type>ament_python</build_type></export></package>

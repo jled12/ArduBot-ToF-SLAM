@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3"><name>ardubot_pc_bringup_pointcloud</name><version>1.0.0</version>
+<description>Minimal ArduBot runtime bringup.</description><maintainer email="maintainer@example.invalid">jled12</maintainer>
+<license>GPL-3.0-only</license><buildtool_depend>ament_python</buildtool_depend>
+<exec_depend>launch</exec_depend><exec_depend>tf2_ros</exec_depend>
+<exec_depend>launch_ros</exec_depend>
+<exec_depend>ament_index_python</exec_depend>
+<exec_depend>robot_state_publisher</exec_depend>
+<exec_depend>ardubot_description</exec_depend>
+<exec_depend>ardubot_bno_encoder_odometry</exec_depend>
+<exec_depend>ardubot_heading_corrector</exec_depend>
+<exec_depend>ardubot_projected_map_clearing</exec_depend>
+<exec_depend>slam_toolbox</exec_depend>
+<exec_depend>nav2_bringup</exec_depend>
+<exec_depend>nav2_common</exec_depend>
+<exec_depend>octomap_server</exec_depend>
+<exec_depend>rviz2</exec_depend>
+<export><build_type>ament_python</build_type></export></package>

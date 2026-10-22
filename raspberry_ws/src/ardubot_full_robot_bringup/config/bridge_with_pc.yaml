@@ -1,0 +1,48 @@
+name: bridge_with_pc
+from_domain: 10
+to_domain: 20
+topics:
+  scan:
+    type: sensor_msgs/msg/LaserScan
+    from_topic: /scan
+    to_topic: /scan
+    qos:
+      reliability: best_effort
+      depth: 5
+  odom:
+    type: nav_msgs/msg/Odometry
+    from_topic: /odom
+    to_topic: /odom
+  tf:
+    type: tf2_msgs/msg/TFMessage
+    from_topic: /tf
+    to_topic: /tf
+  imu:
+    type: sensor_msgs/msg/Imu
+    from_topic: /imu
+    to_topic: /imu
+  imu/calibration:
+    type: std_msgs/msg/UInt8MultiArray
+    from_topic: /imu/calibration
+    to_topic: /imu/calibration
+  left_ticks:
+    type: std_msgs/msg/Int64
+    from_topic: /left_ticks
+    to_topic: /left_ticks
+  right_ticks:
+    type: std_msgs/msg/Int64
+    from_topic: /right_ticks
+    to_topic: /right_ticks
+  cmd_vel:
+    type: geometry_msgs/msg/Twist
+    from_domain: 20
+    to_domain: 10
+    from_topic: /cmd_vel
+    to_topic: /cmd_vel
+  point_cloud2:
+    type: sensor_msgs/msg/PointCloud2
+    from_topic: /point_cloud2
+    to_topic: /point_cloud2
+    qos:
+      reliability: best_effort
+      depth: 1

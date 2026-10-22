@@ -1,0 +1,10 @@
+# Référence des profils validés par les campagnes V4.5.10.
+profiles:
+  B2:
+    heading_kcap: 0.60
+    heading_kgyro: 0.16
+    heading_bias_rad_s: -0.053
+  C1:
+    heading_kcap: 0.60
+    heading_kgyro: 0.16
+    heading_bias_rad_s: -0.060

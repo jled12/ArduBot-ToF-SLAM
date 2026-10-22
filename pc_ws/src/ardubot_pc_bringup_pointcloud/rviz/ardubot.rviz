@@ -1,0 +1,57 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 20
+    Background Color: 30; 30; 30
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+    - Class: rviz_default_plugins/RobotModel
+      Name: Robot
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+    - Class: rviz_default_plugins/Map
+      Name: SLAM map
+      Enabled: true
+      Topic:
+        Value: /map
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/Map
+      Name: Projected occupancy grid
+      Enabled: false
+      Topic:
+        Value: /projected_map_cleared
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/PointCloud2
+      Name: ToF 3D
+      Enabled: false
+      Topic:
+        Value: /point_cloud2
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+      Size (m): 0.015
+      Style: Points
+      Color Transformer: AxisColor
+      Position Transformer: XYZ
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/SetGoal
+      Topic: /goal_pose
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 3
+      Pitch: 0.8
+      Yaw: 0.8
+Window Geometry:
+  Width: 1200
+  Height: 800
